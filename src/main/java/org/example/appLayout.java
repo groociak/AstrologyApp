@@ -1,12 +1,10 @@
 package org.example;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class appLayout extends JFrame {
-    private JPanel window;
-    private JPanel bottomPanel;
+
 
     public appLayout() {
         setTitle("Astrology App");
@@ -30,25 +28,7 @@ public class appLayout extends JFrame {
         CardLayout cl = (CardLayout) cardLayout.getLayout();
 
         //menu=======================================================================================
-        JButton menuButton = new JButton("≡");
-        menuButton.setPreferredSize(new Dimension(70, 70));
-        JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem userItem = new JMenuItem("User");
-        JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        popupMenu.add(userItem);
-        popupMenu.addSeparator();
-        popupMenu.add(exitItem);
-        menuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popupMenu.show(menuButton, 0, menuButton.getHeight());
-            }
-        });
+        JButton menuButton = getMenuButton();
         JPanel menuPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10,10));
         menuPanel.setBackground(new Color(219, 216, 206));
         menuPanel.add(menuButton);
@@ -78,40 +58,24 @@ public class appLayout extends JFrame {
         buttonDaily.setPreferredSize(new Dimension(70, 70));
         bottomPanel.add(buttonDaily);
         bottomPanel.add(Box.createHorizontalStrut(50));
-        buttonDaily.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cl.show(cardLayout, "Daily");
-            }
-        });
+        buttonDaily.addActionListener(_ -> cl.show(cardLayout, "Daily"));
 
         JButton buttonReading = new JButton("Readings"); //tarot readings
         buttonReading.setPreferredSize(new Dimension(70, 70));
         bottomPanel.add(buttonReading);
         bottomPanel.add(Box.createHorizontalStrut(50));
-        buttonReading.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cl.show(cardLayout, "Readings");
-            }
-        });
+        buttonReading.addActionListener(_ -> cl.show(cardLayout, "Readings"));
 
         JButton buttonCompatibility = new JButton("Compatibility"); //compatibility
         buttonCompatibility.setPreferredSize(new Dimension(70, 70));
         bottomPanel.add(buttonCompatibility);
         bottomPanel.add(Box.createHorizontalStrut(50));
-        buttonCompatibility.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cl.show(cardLayout, "Compatibility");
-            }
-        });
+        buttonCompatibility.addActionListener(_ -> cl.show(cardLayout, "Compatibility"));
 
         JButton buttonMe = new JButton("Me"); //Me: Birthchart, zodiac sign
         buttonMe.setPreferredSize(new Dimension(70, 70));
         bottomPanel.add(buttonMe);
-        buttonMe.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cl.show(cardLayout, "Me");
-            }
-        });
+        buttonMe.addActionListener(_ -> cl.show(cardLayout, "Me"));
 
 
 
@@ -121,5 +85,19 @@ public class appLayout extends JFrame {
         window.add(cardLayout, BorderLayout.CENTER);
         add(window, BorderLayout.CENTER);
         setVisible(true);
+    }
+
+    private static JButton getMenuButton() {
+        JButton menuButton = new JButton("≡");
+        menuButton.setPreferredSize(new Dimension(70, 70));
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem userItem = new JMenuItem("User");
+        JMenuItem exitItem = new JMenuItem("Exit");
+        exitItem.addActionListener(_ -> System.exit(0));
+        popupMenu.add(userItem);
+        popupMenu.addSeparator();
+        popupMenu.add(exitItem);
+        menuButton.addActionListener(_ -> popupMenu.show(menuButton, 0, menuButton.getHeight()));
+        return menuButton;
     }
 }
