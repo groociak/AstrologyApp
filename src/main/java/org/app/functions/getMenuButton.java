@@ -1,4 +1,4 @@
-package org.app;
+package org.app.functions;
 
 import javax.swing.*;
 import java.awt.*;

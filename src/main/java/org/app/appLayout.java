@@ -1,22 +1,27 @@
 package org.app;
+import org.app.functions.getMenuButton;
+import org.app.panels.bottomMenu;
+import org.app.panels.dailyPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
 
-public class appLayout extends JFrame {
 
+public class appLayout extends JFrame {
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     public appLayout() {
         setTitle("Astrology App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(600, 1000);
+        setSize(700, (int) screenSize.getHeight());
         setLocationRelativeTo(null);
 
         //containers=======================================================================================
         JPanel window = new JPanel(new BorderLayout());
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        JPanel dailyPanel = new JPanel(new BorderLayout());
+        dailyPanel dailyPanel = new dailyPanel();
         JPanel readingsPanel = new JPanel(new FlowLayout());
         JPanel compatibilityPanel = new JPanel(new FlowLayout());
         JPanel mePanel = new JPanel(new FlowLayout());
@@ -40,27 +45,7 @@ public class appLayout extends JFrame {
 
 
         //daily panel=======================================================================================
-        dailyPanel.setBorder(BorderFactory.createEmptyBorder());
-        JPanel contentDailyPanel = new JPanel();
-        contentDailyPanel.setBorder(BorderFactory.createEmptyBorder());
-        contentDailyPanel.setLayout(new BoxLayout(contentDailyPanel, BoxLayout.Y_AXIS));
-        contentDailyPanel.setBackground(new Color(219, 216, 206));
 
-        contentDailyPanel.add(new JLabel("Daily"));
-
-        JButton test1 = new JButton("Test1");
-        test1.setPreferredSize(new Dimension(70, 1400));
-        test1.setMaximumSize(new Dimension(70, 1400));
-        contentDailyPanel.add(test1);
-
-        //scroll
-        JScrollPane scrollPaneDaily = new JScrollPane(contentDailyPanel);
-        scrollPaneDaily.setBorder(BorderFactory.createEmptyBorder());
-        scrollPaneDaily.setHorizontalScrollBarPolicy(
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
-        );
-        scrollPaneDaily.getVerticalScrollBar().setUI(new scrollbar());
-        dailyPanel.add(scrollPaneDaily, BorderLayout.CENTER);
 
         //readings panel=======================================================================================
         readingsPanel.setBackground(new Color(219, 216, 206));
