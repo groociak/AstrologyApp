@@ -1,5 +1,6 @@
 package org.app.panels;
 
+import org.app.AppFonts;
 import org.app.functions.DrawTarot;
 
 import javax.imageio.ImageIO;
@@ -42,18 +43,22 @@ public class TarotPanel extends JPanel {
         gbc.gridy=1;
         gbc.gridx=0;
         JLabel Card1 = new JLabel("");
+        Card1.setFont(AppFonts.regular(16f));
         add(Card1,gbc);
         gbc.gridx=1;
         JLabel Card2 = new JLabel("");
+        Card2.setFont(AppFonts.regular(16f));
         add(Card2,gbc);
         gbc.gridx=2;
         JLabel Card3 = new JLabel("");
+        Card3.setFont(AppFonts.regular(16f));
         add(Card3,gbc);
 
         //third row - descriptions
         gbc.gridy=2;
         gbc.gridx=0;
         JTextArea Card1Meaning = new JTextArea(5,20);
+        Card1Meaning.setFont(AppFonts.italic(12f));
         Card1Meaning.setLineWrap(true);
         Card1Meaning.setBackground(new Color(219, 216, 206));
         Card1Meaning.setWrapStyleWord(true);
@@ -61,6 +66,7 @@ public class TarotPanel extends JPanel {
         add(Card1Meaning,gbc);
         gbc.gridx=1;
         JTextArea Card2Meaning = new JTextArea(5,20);
+        Card2Meaning.setFont(AppFonts.italic(12f));
         Card2Meaning.setLineWrap(true);
         Card2Meaning.setBackground(new Color(219, 216, 206));
         Card2Meaning.setWrapStyleWord(true);
@@ -68,6 +74,7 @@ public class TarotPanel extends JPanel {
         add(Card2Meaning,gbc);
         gbc.gridx=2;
         JTextArea Card3Meaning = new JTextArea(5,20);
+        Card3Meaning.setFont(AppFonts.italic(12f));
         Card3Meaning.setLineWrap(true);
         Card3Meaning.setBackground(new Color(219, 216, 206));
         Card3Meaning.setWrapStyleWord(true);

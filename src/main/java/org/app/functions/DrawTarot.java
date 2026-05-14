@@ -6,8 +6,6 @@ import kong.unirest.core.Unirest;
 
 public class DrawTarot {
     private String name;
-    private String type;
-    private String suit;
     private String meaning_up;
     private String meaning_rev;
 
@@ -22,8 +20,6 @@ public class DrawTarot {
                     .getJSONObject(0);
 
             this.name = card.getString("name");
-            this.type = card.getString("type");
-            this.suit = card.optString("suit");
             this.meaning_up = card.getString("meaning_up");
             this.meaning_rev = card.getString("meaning_rev");
 

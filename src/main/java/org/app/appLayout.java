@@ -1,7 +1,6 @@
 package org.app;
 import org.app.functions.getMenuButton;
-import org.app.panels.bottomMenu;
-import org.app.panels.dailyPanel;
+import org.app.panels.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,15 +21,17 @@ public class appLayout extends JFrame {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         dailyPanel dailyPanel = new dailyPanel();
-        JPanel readingsPanel = new JPanel(new FlowLayout());
-        JPanel compatibilityPanel = new JPanel(new FlowLayout());
-        JPanel mePanel = new JPanel(new FlowLayout());
+        readingsPanel readingsPanel = new readingsPanel();
+        compatibilityPanel compatibilityPanel = new compatibilityPanel();
+        mePanel mePanel = new mePanel();
+        userPanel userPanel = new userPanel();
 
         JPanel cardLayout = new JPanel(new CardLayout());
         cardLayout.add(dailyPanel, "Daily");
         cardLayout.add(readingsPanel, "Readings");
         cardLayout.add(compatibilityPanel, "Compatibility");
         cardLayout.add(mePanel, "Me");
+        cardLayout.add(userPanel, "User");
         cardLayout.setBorder(BorderFactory.createEmptyBorder());
 
         CardLayout cl = (CardLayout) cardLayout.getLayout();
@@ -38,26 +39,11 @@ public class appLayout extends JFrame {
 
 
         //menu=======================================================================================
-        getMenuButton menuButton = new getMenuButton();
+        getMenuButton menuButton = new getMenuButton(cl,cardLayout);
         JPanel menuPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10,10));
         menuPanel.setBackground(new Color(219, 216, 206));
         menuPanel.add(menuButton);
 
-
-        //daily panel=======================================================================================
-
-
-        //readings panel=======================================================================================
-        readingsPanel.setBackground(new Color(219, 216, 206));
-        readingsPanel.add(new JLabel("Readings"));
-
-        //compatibility panel=======================================================================================
-        compatibilityPanel.setBackground(new Color(219, 216, 206));
-        compatibilityPanel.add(new JLabel("Compatibility"));
-
-        //me panel=======================================================================================
-        mePanel.setBackground(new Color(219, 216, 206));
-        mePanel.add(new JLabel("Me"));
 
 
 
