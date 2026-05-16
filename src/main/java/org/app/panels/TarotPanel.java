@@ -4,6 +4,7 @@ import org.app.AppFonts;
 import org.app.functions.DrawTarot;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -90,13 +91,28 @@ public class TarotPanel extends JPanel {
                 var card1Data= new DrawTarot();
                 var card2Data= new DrawTarot();
                 var card3Data= new DrawTarot();
+
+                backCard1Label.setIcon(loadImage(card1Data.getImagePath()));
                 Card1.setText(String.valueOf(card1Data));
                 Card1Meaning.setText(card1Data.getMeaning(revVal[0]));
+
+                backCard2Label.setIcon(loadImage(card2Data.getImagePath()));
                 Card2.setText(String.valueOf(card2Data));
                 Card2Meaning.setText(String.valueOf(card2Data.getMeaning(revVal[1])));
+
+                backCard3Label.setIcon(loadImage(card3Data.getImagePath()));
                 Card3.setText(String.valueOf(card3Data));
                 Card3Meaning.setText(String.valueOf(card3Data.getMeaning(revVal[2])));
             }
         });
+    }
+
+    public ImageIcon loadImage(String path){
+        try {
+            BufferedImage img = ImageIO.read(Objects.requireNonNull(getClass().getResource(path)));
+            return new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

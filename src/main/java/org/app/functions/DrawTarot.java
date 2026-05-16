@@ -6,6 +6,7 @@ import kong.unirest.core.Unirest;
 
 public class DrawTarot {
     private String name;
+    private String shortName;
     private String meaning_up;
     private String meaning_rev;
 
@@ -20,6 +21,7 @@ public class DrawTarot {
                     .getJSONObject(0);
 
             this.name = card.getString("name");
+            this.shortName = card.getString("name_short");
             this.meaning_up = card.getString("meaning_up");
             this.meaning_rev = card.getString("meaning_rev");
 
@@ -37,6 +39,10 @@ public class DrawTarot {
         else{
             return "Reversed: " + meaning_rev;
         }
+    }
+
+    public String getImagePath(){
+        return "/TarotCards/"+shortName+".png";
     }
 
     @Override
