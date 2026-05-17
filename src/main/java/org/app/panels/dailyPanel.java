@@ -1,6 +1,5 @@
 package org.app.panels;
 
-import org.app.functions.DrawTarot;
 import org.app.functions.scrollbar;
 import org.app.AppFonts;
 
@@ -42,8 +41,8 @@ public class dailyPanel extends JPanel {
         contentDailyPanel.add(buttonTarot);
         buttonTarot.addActionListener(_ -> cl.show(this, "Tarot"));
 
-        JLabel tarotLabel = new JLabel(String.valueOf(new DrawTarot()));
-        contentDailyPanel.add(tarotLabel);
+        horoscopePanel horoscopePanel = new horoscopePanel();
+        contentDailyPanel.add(horoscopePanel);
 
 
         //TarotPanel Elements===================================================================

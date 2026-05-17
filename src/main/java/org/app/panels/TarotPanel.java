@@ -4,7 +4,6 @@ import org.app.AppFonts;
 import org.app.functions.DrawTarot;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;

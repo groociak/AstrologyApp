@@ -3,15 +3,19 @@ package org.app.panels;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import org.app.AppFonts;
+import org.app.functions.zodiacUtils;
+import org.app.userData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.Locale;
 
 public class userPanel extends JPanel {
     private String name;
     private String surname;
     private String date;
+
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public userPanel() {
@@ -26,6 +30,17 @@ public class userPanel extends JPanel {
         titlePanel.setMaximumSize(new Dimension((int) screenSize.getWidth(),100));
         titlePanel.add(titleLabel);
         add(titlePanel);
+
+        JLabel zodiacSignLabel = new JLabel("Your Zodiac Sign: ");
+        zodiacSignLabel.setFont(AppFonts.regular(36f));
+        JLabel zodiacSign = new JLabel("");
+        zodiacSign.setFont(AppFonts.bold(36f));
+        JPanel zodiacPanel = new JPanel();
+        zodiacPanel.setBackground(new Color(219, 216, 206));
+        zodiacPanel.setMaximumSize(new Dimension((int) screenSize.getWidth(),100));
+        zodiacPanel.add(zodiacSignLabel);
+        zodiacPanel.add(zodiacSign);
+        add(zodiacPanel);
 
         JLabel nameLabel = new JLabel("Name");
         nameLabel.setFont(AppFonts.regular(36f));
@@ -51,6 +66,7 @@ public class userPanel extends JPanel {
 
 
         DatePickerSettings dateSettings = new DatePickerSettings();
+        dateSettings.setAllowEmptyDates(false);
         dateSettings.setLocale(new Locale("eng"));
         dateSettings.setFormatForDatesCommonEra("yyyy-MM-dd");
         dateSettings.setFontValidDate(AppFonts.regular(14f));
@@ -68,10 +84,12 @@ public class userPanel extends JPanel {
         saveButton.setBackground(new Color(219, 216, 206));
         saveButton.setBorder(BorderFactory.createLineBorder(new Color(55, 50, 28),4));
         saveButton.setFont(AppFonts.regular(36f));
-        saveButton.addActionListener(e -> {
+        saveButton.addActionListener(_ -> {
             name=nameArea.getText();
             surname=surnameArea.getText();
             date = datePicker.getDate().toString();
+            zodiacSign.setText(zodiacUtils.getZodiac(LocalDate.parse(date)));
+            userData.setZodiac(zodiacSign.getText());
         });
         JPanel saveButtonPanel = new JPanel(new FlowLayout());
         saveButtonPanel.setBackground(new Color(219, 216, 206));
