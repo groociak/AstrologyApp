@@ -1,0 +1,267 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="920" viewBox="0 0 920 920">
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Cinzel:wght@400;500;600;700;800;900&amp;display=swap');
+        
+        .chart-bg { fill: #FAFBFC; }
+        .outer-ring { fill: none; stroke: #E1E4E8; stroke-width: 3; }
+        .center-circle { fill: #F6F8FA; stroke: #E1E4E8; stroke-width: 2; }
+        
+        /* Zodiac band - larger for mobile */
+        .zodiac-band   { fill: #000000; }
+        .zodiac-cutout { fill: #FFFFFF; }
+        .zodiac-divider { stroke: #FFFFFF; stroke-width: 2; }
+        .sign-text { 
+            font: 800 18px 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            fill: #FFFFFF; 
+            text-anchor: middle; 
+            dominant-baseline: middle; 
+            letter-spacing: 1px; 
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+        
+        /* Planet rings - thicker lines */
+        .planet-ring { fill: #F8F9FA; stroke: #D0D7DE; stroke-width: 2; }
+        .planet-ring-divider { stroke: #E1E4E8; stroke-width: 1; opacity: 0.5; }
+        
+        /* Houses - more visible */
+        .house-circle { fill: none; stroke: #D0D7DE; stroke-width: 2.5; }
+        .house-line { stroke: #D0D7DE; stroke-width: 2; opacity: 0.7; }
+        .house-num { 
+            font: 700 20px 'Cinzel', serif; 
+            fill: #1A1A1A; 
+            text-anchor: middle; 
+            dominant-baseline: middle;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Angles - larger */
+        .angle-tick { stroke: #4A5568; stroke-width: 1.5; stroke-linecap: round; }
+        .angle-marker { fill: #FFD700; stroke: #2C3E50; stroke-width: 2; }
+        .angle-text-bg { fill: #2C3E50; rx: 4; }
+        .angle-text { 
+            font: 900 14px 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            fill: #FFFFFF; 
+            text-anchor: middle; 
+            dominant-baseline: middle;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Planets - VERY LARGE glyphs with NO background - differentiated colors */
+        .planet-inner { }
+        .planet-outer { opacity: 0.9; }
+        .planet-glyph-inner { 
+            font: 400 42px serif; 
+            text-anchor: middle; 
+            dominant-baseline: middle;
+            fill: #1A1A1A;
+            filter: url(#glyph-glow);
+        }
+        .planet-glyph-outer { 
+            font: 400 42px serif; 
+            text-anchor: middle; 
+            dominant-baseline: middle;
+            fill: #1E3A8A;
+            filter: url(#glyph-glow);
+        }
+        .planet-degree { 
+            font: 600 12px 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            text-anchor: middle; 
+            dominant-baseline: middle;
+            fill: #2C3E50;
+        }
+        
+        /* Aspects - thicker */
+        .aspect { fill: none; stroke-linecap: round; }
+        
+        /* Labels - more readable */
+        .chart-label {
+            font: 800 15px 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            fill: #2C3E50;
+            text-anchor: middle;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        </style>
+<defs>
+
+            <filter id="planet-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+            </filter>
+        
+
+            <filter id="glyph-glow">
+                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        
+
+            <filter id="angle-glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        
+
+            <radialGradient id="center-gradient">
+                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#F6F8FA;stop-opacity:1" />
+            </radialGradient>
+        
+</defs>
+<rect class="chart-bg" width="920" height="920"/>
+<circle class="outer-ring" cx="460" cy="460" r="441.59999999999997"/>
+<circle class="zodiac-band" cx="460" cy="460" r="404.8"/>
+<circle class="zodiac-cutout" cx="460" cy="460" r="340.4"/>
+<circle cx="460" cy="460" r="340.4" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<line class="zodiac-divider" x1="792.9" y1="531.1" x2="855.9" y2="544.6"/>
+<line class="zodiac-divider" x1="712.7" y1="688.1" x2="760.5" y2="731.2"/>
+<line class="zodiac-divider" x1="564.8" y1="783.9" x2="584.7" y2="845.1"/>
+<line class="zodiac-divider" x1="388.9" y1="792.9" x2="375.4" y2="855.9"/>
+<line class="zodiac-divider" x1="231.9" y1="712.7" x2="188.8" y2="760.5"/>
+<line class="zodiac-divider" x1="136.1" y1="564.8" x2="74.9" y2="584.7"/>
+<line class="zodiac-divider" x1="127.1" y1="388.9" x2="64.1" y2="375.4"/>
+<line class="zodiac-divider" x1="207.3" y1="231.9" x2="159.5" y2="188.8"/>
+<line class="zodiac-divider" x1="355.2" y1="136.1" x2="335.3" y2="74.9"/>
+<line class="zodiac-divider" x1="531.1" y1="127.1" x2="544.6" y2="64.1"/>
+<line class="zodiac-divider" x1="688.1" y1="207.3" x2="731.2" y2="159.5"/>
+<line class="zodiac-divider" x1="783.9" y1="355.2" x2="845.1" y2="335.3"/>
+<text class="sign-text" x="791.8" y="629.5" transform="rotate(-62.9 791.8 629.5)">ARIES</text>
+<text class="sign-text" x="662.6" y="772.7" transform="rotate(-32.9 662.6 772.7)">TAURUS</text>
+<text class="sign-text" x="479.1" y="832.1" transform="rotate(-2.9 479.1 832.1)">GEMINI</text>
+<text class="sign-text" x="290.5" y="791.8" transform="rotate(27.1 290.5 791.8)">CANCER</text>
+<text class="sign-text" x="147.3" y="662.6" transform="rotate(57.1 147.3 662.6)">LEO</text>
+<text class="sign-text" x="87.9" y="479.1" transform="rotate(87.1 87.9 479.1)">VIRGO</text>
+<text class="sign-text" x="128.2" y="290.5" transform="rotate(-62.9 128.2 290.5)">LIBRA</text>
+<text class="sign-text" x="257.4" y="147.3" transform="rotate(-32.9 257.4 147.3)">SCORPIO</text>
+<text class="sign-text" x="440.9" y="87.9" transform="rotate(-2.9 440.9 87.9)">SAGITTARIUS</text>
+<text class="sign-text" x="629.5" y="128.2" transform="rotate(27.1 629.5 128.2)">CAPRICORN</text>
+<text class="sign-text" x="772.7" y="257.4" transform="rotate(57.1 772.7 257.4)">AQUARIUS</text>
+<text class="sign-text" x="832.1" y="440.9" transform="rotate(87.1 832.1 440.9)">PISCES</text>
+<circle cx="460" cy="460" r="262.2" fill="#F8F9FA" stroke="#D0D7DE" stroke-width="1"/>
+<circle cx="460" cy="460" r="230.0" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1"/>
+<circle cx="460" cy="460" r="220.79999999999998" fill="#F0F1F3" stroke="#D0D7DE" stroke-width="1"/>
+<circle cx="460" cy="460" r="193.2" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1"/>
+<circle class="house-circle" cx="460" cy="460" r="322.0"/>
+<circle class="house-circle" cx="460" cy="460" r="276.0"/>
+<line class="house-line" x1="184.0" y1="460.0" x2="138.0" y2="460.0"/>
+<text class="house-num" x="166.7" y="402.0">1</text>
+<line class="house-line" x1="204.7" y1="355.0" x2="162.2" y2="337.5"/>
+<text class="house-num" x="220.2" y="281.4">2</text>
+<line class="house-line" x1="286.4" y1="245.5" x2="257.4" y2="209.7"/>
+<text class="house-num" x="351.2" y="181.5">3</text>
+<line class="house-line" x1="442.1" y1="184.6" x2="439.1" y2="138.7"/>
+<text class="house-num" x="536.3" y="170.9">4</text>
+<line class="house-line" x1="611.4" y1="229.3" x2="636.7" y2="190.8"/>
+<text class="house-num" x="685.7" y="263.9">5</text>
+<line class="house-line" x1="709.6" y1="342.2" x2="751.2" y2="322.6"/>
+<text class="house-num" x="751.8" y="394.6">6</text>
+<line class="house-line" x1="736.0" y1="460.0" x2="782.0" y2="460.0"/>
+<text class="house-num" x="753.3" y="518.0">7</text>
+<line class="house-line" x1="715.3" y1="565.0" x2="757.8" y2="582.5"/>
+<text class="house-num" x="699.8" y="638.6">8</text>
+<line class="house-line" x1="633.6" y1="674.5" x2="662.6" y2="710.3"/>
+<text class="house-num" x="568.8" y="738.5">9</text>
+<line class="house-line" x1="477.9" y1="735.4" x2="480.9" y2="781.3"/>
+<text class="house-num" x="383.7" y="749.1">10</text>
+<line class="house-line" x1="308.6" y1="690.7" x2="283.3" y2="729.2"/>
+<text class="house-num" x="234.3" y="656.1">11</text>
+<line class="house-line" x1="210.4" y1="577.8" x2="168.8" y2="597.4"/>
+<text class="house-num" x="168.2" y="525.4">12</text>
+<circle class="center-circle" cx="460" cy="460" r="147.20000000000002"/>
+<line class="angle-tick" x1="138.0" y1="460.0" x2="121.6" y2="460.0"/>
+<circle class="angle-marker" cx="131.6" cy="460.0" r="6"/>
+<rect class="angle-text-bg" x="127.6" y="452.0" width="36" height="16"/>
+<text class="angle-text" x="145.6" y="460.0">ASC</text>
+<line class="angle-tick" x1="782.0" y1="460.0" x2="798.4" y2="460.0"/>
+<circle class="angle-marker" cx="788.4" cy="460.0" r="6"/>
+<rect class="angle-text-bg" x="756.4" y="452.0" width="36" height="16"/>
+<text class="angle-text" x="774.4" y="460.0">DS</text>
+<line class="angle-tick" x1="480.9" y1="781.3" x2="481.9" y2="797.7"/>
+<circle class="angle-marker" cx="481.3" cy="787.7" r="6"/>
+<rect class="angle-text-bg" x="462.4" y="765.7" width="36" height="16"/>
+<text class="angle-text" x="480.4" y="773.7">MC</text>
+<line class="angle-tick" x1="439.1" y1="138.7" x2="438.1" y2="122.3"/>
+<circle class="angle-marker" cx="438.7" cy="132.3" r="6"/>
+<rect class="angle-text-bg" x="421.6" y="138.3" width="36" height="16"/>
+<text class="angle-text" x="439.6" y="146.3">IC</text>
+<text class="planet-glyph-inner" x="647.7" y="549.3">♀</text>
+<text class="planet-glyph-inner" x="592.9" y="620.7">☿</text>
+<text class="planet-glyph-inner" x="542.5" y="651.9">☉</text>
+<text class="planet-glyph-inner" x="383.7" y="654.4">♃</text>
+<text class="planet-glyph-inner" x="351.0" y="286.0">♇</text>
+<text class="planet-glyph-inner" x="535.0" y="269.1">♅</text>
+<text class="planet-glyph-inner" x="534.3" y="312.4">♆</text>
+<text class="planet-glyph-inner" x="585.5" y="297.4">♄</text>
+<text class="planet-glyph-inner" x="567.2" y="333.9">☽</text>
+<text class="planet-glyph-inner" x="623.8" y="335.5">☊</text>
+<text class="planet-glyph-inner" x="667.0" y="463.6">♂</text>
+<text class="planet-glyph-outer" x="492.0" y="706.0">☽</text>
+<text class="planet-glyph-outer" x="461.9" y="668.1">♂</text>
+<text class="planet-glyph-outer" x="263.2" y="609.8">☿</text>
+<text class="planet-glyph-outer" x="226.6" y="540.0">☉</text>
+<text class="planet-glyph-outer" x="213.9" y="459.6">♀</text>
+<text class="planet-glyph-outer" x="254.0" y="456.6">♃</text>
+<text class="planet-glyph-outer" x="345.8" y="244.0">♇</text>
+<text class="planet-glyph-outer" x="506.0" y="220.2">☊</text>
+<text class="planet-glyph-outer" x="569.9" y="241.8">♅</text>
+<text class="planet-glyph-outer" x="558.6" y="281.0">♆</text>
+<text class="planet-glyph-outer" x="664.3" y="324.8">♄</text>
+<g opacity="0.6">
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.9" x1="518.9" y1="341.4" x2="519.1" y2="341.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.9" x1="518.9" y1="341.4" x2="523.4" y2="343.7"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.9" x1="564.8" y1="379.0" x2="570.0" y2="386.1"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.9" x1="390.2" y1="347.4" x2="398.5" y2="342.6"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.9" x1="508.0" y1="336.5" x2="519.1" y2="341.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.9" x1="508.0" y1="336.5" x2="523.4" y2="343.7"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="592.5" y1="461.0" x2="327.5" y2="458.7"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="564.8" y1="379.0" x2="354.1" y2="539.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="592.5" y1="461.0" x2="327.6" y2="456.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="512.8" y1="581.5" x2="398.5" y2="342.6"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="411.2" y1="583.2" x2="519.1" y2="341.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="411.2" y1="583.2" x2="523.4" y2="343.7"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="592.5" y1="461.0" x2="461.2" y2="592.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="580.1" y1="515.9" x2="519.1" y2="341.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="390.2" y1="347.4" x2="570.0" y2="386.1"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="545.0" y1="561.6" x2="354.1" y2="539.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="580.1" y1="515.9" x2="523.4" y2="343.7"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="512.8" y1="581.5" x2="334.4" y2="502.0"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" x1="390.2" y1="347.4" x2="354.1" y2="539.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="564.8" y1="379.0" x2="477.2" y2="591.4"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="580.1" y1="515.9" x2="354.1" y2="539.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="592.5" y1="461.0" x2="398.5" y2="342.6"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="518.9" y1="341.4" x2="327.5" y2="458.7"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="512.8" y1="581.5" x2="327.6" y2="456.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="518.9" y1="341.4" x2="327.6" y2="456.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="540.3" y1="354.6" x2="327.6" y2="456.5"/>
+<line class="aspect" stroke="#000000" stroke-width="2" opacity="0.85" stroke-dasharray="5,5" x1="512.8" y1="581.5" x2="327.5" y2="458.7"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="390.2" y1="347.4" x2="523.4" y2="343.7"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="580.1" y1="515.9" x2="570.0" y2="386.1"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="390.2" y1="347.4" x2="519.1" y2="341.5"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="592.5" y1="461.0" x2="523.4" y2="343.7"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="390.2" y1="347.4" x2="327.5" y2="458.7"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="580.1" y1="515.9" x2="477.2" y2="591.4"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="390.2" y1="347.4" x2="327.6" y2="456.5"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,3" x1="592.5" y1="461.0" x2="519.1" y2="341.5"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.65" stroke-dasharray="5,5" x1="518.9" y1="341.4" x2="334.4" y2="502.0"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.65" stroke-dasharray="5,5" x1="540.3" y1="354.6" x2="477.2" y2="591.4"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,3" x1="518.9" y1="341.4" x2="570.0" y2="386.1"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,3" x1="545.0" y1="358.4" x2="484.7" y2="329.9"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,3" x1="411.2" y1="583.2" x2="477.2" y2="591.4"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,3" x1="508.0" y1="336.5" x2="570.0" y2="386.1"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.7" stroke-dasharray="8,8" x1="390.2" y1="347.4" x2="461.2" y2="592.5"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.7" stroke-dasharray="8,8" x1="508.0" y1="336.5" x2="477.2" y2="591.4"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,3" x1="592.5" y1="461.0" x2="354.1" y2="539.5"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,3" x1="580.1" y1="515.9" x2="398.5" y2="342.6"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,3" x1="411.2" y1="583.2" x2="354.1" y2="539.5"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.65" stroke-dasharray="5,5" x1="580.1" y1="515.9" x2="334.4" y2="502.0"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.7" stroke-dasharray="8,8" x1="545.0" y1="358.4" x2="334.4" y2="502.0"/>
+<line class="aspect" stroke="#000000" stroke-width="1.5" opacity="0.7" stroke-dasharray="8,8" x1="508.0" y1="336.5" x2="354.1" y2="539.5"/>
+</g>
+</svg>

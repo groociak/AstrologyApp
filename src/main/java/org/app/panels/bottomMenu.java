@@ -1,5 +1,7 @@
 package org.app.panels;
 
+import org.app.functions.GetBirthChart;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -27,12 +29,18 @@ public class bottomMenu extends JPanel {
         buttonCompatibility.setPreferredSize(new Dimension(70, 70));
         add(buttonCompatibility);
         add(Box.createHorizontalStrut(50));
-        buttonCompatibility.addActionListener(_ -> cl.show(cardLayout, "Compatibility"));
+        buttonCompatibility.addActionListener(_ -> {
+            compatibilityPanel.updateComp();
+            cl.show(cardLayout, "Compatibility");
+        });
 
         JButton buttonMe = new JButton("Me"); //Me: Birth chart, zodiac sign
         buttonMe.setPreferredSize(new Dimension(70, 70));
         add(buttonMe);
-        buttonMe.addActionListener(_ -> cl.show(cardLayout, "Me"));
+        buttonMe.addActionListener(_ -> {
+            mePanel.updateChart();
+            cl.show(cardLayout, "Me");
+        });
     }
 
 

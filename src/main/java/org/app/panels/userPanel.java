@@ -12,9 +12,10 @@ import java.time.LocalDate;
 import java.util.Locale;
 
 public class userPanel extends JPanel {
-    private String name;
-    private String surname;
-    private String date;
+    public static String name;
+    public static String surname;
+    public static String date=LocalDate.now().toString();
+    public static String zodiac=zodiacUtils.getZodiac(LocalDate.now());
 
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -88,7 +89,8 @@ public class userPanel extends JPanel {
             name=nameArea.getText();
             surname=surnameArea.getText();
             date = datePicker.getDate().toString();
-            zodiacSign.setText(zodiacUtils.getZodiac(LocalDate.parse(date)));
+            zodiac = zodiacUtils.getZodiac(LocalDate.parse(date));
+            zodiacSign.setText(zodiac);
             userData.setZodiac(zodiacSign.getText());
         });
         JPanel saveButtonPanel = new JPanel(new FlowLayout());
