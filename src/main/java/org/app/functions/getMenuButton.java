@@ -6,7 +6,9 @@ import java.awt.*;
 public class getMenuButton extends JButton {
     public getMenuButton(CardLayout cl, JPanel cardLayout) {
         super("≡");
-        setPreferredSize(new Dimension(70, 70));
+        setFont(new Font("SansSerif", Font.BOLD, 22));
+        setMargin(new Insets(4, 12, 4, 12));
+
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem userItem = new JMenuItem("User");
         userItem.addActionListener(_ -> cl.show(cardLayout, "User"));

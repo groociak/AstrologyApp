@@ -1,0 +1,12 @@
+feat: redesign UI architecture to be fully dynamic and responsive
+
+Refactored the entire Swing application to replace hardcoded pixel dimensions with a dynamic, screen-adaptive layout. The UI now fluidly scales and aligns components based on the available window size and resolution.
+
+Detailed changes:
+- `appLayout`: Removed fixed 700px width. Implemented proportional window sizing (60% width, 90% height of screen) with dynamic resizing support.
+- Component Scaling: Replaced fixed sizes (e.g., 70x70 buttons, 200x200 images, hardcoded heights/widths) across all panels with `Integer.MAX_VALUE` maximum widths and proportional logic, allowing `BoxLayout` elements to stretch and align correctly.
+- `bottomMenu`: Refactored to use `GridLayout(1,4)` ensuring navigation buttons evenly distribute across the full width of the app. Changed 'Daily' button to 'Home' to act as a clear redirect to the main view.
+- Horoscope Text Wrapping: Created a custom `ScrollablePanel` that implements the `Scrollable` interface to force viewport tracking. Fixed the issue where `JTextArea` inside `horoscopePanel` overflowed horizontally without wrapping.
+- Fast Image Resizing: Replaced legacy, synchronous `Image.SCALE_SMOOTH` calls in `TarotPanel` and `mePanel` with hardware-accelerated `Graphics2D` rendering. This eliminates the 1-2 second UI lag when resizing the window.
+- Visual Polish: Standardized background colors across `JScrollPane` viewports to remove white visual gaps. Used `CENTER_ALIGNMENT` to elegantly center UI elements in their respective panels.
+- Codebase Cleanup: Translated all remaining Polish code comments into English for standard consistency.

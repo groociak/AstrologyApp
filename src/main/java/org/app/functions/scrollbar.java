@@ -43,7 +43,7 @@ public class scrollbar extends BasicScrollBarUI {
 
         @Override
         protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-            // brak tła
+            // no background
         }
 
         @Override

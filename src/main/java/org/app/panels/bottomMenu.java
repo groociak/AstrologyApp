@@ -1,47 +1,39 @@
 package org.app.panels;
 
-import org.app.functions.GetBirthChart;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class bottomMenu extends JPanel {
     public bottomMenu(CardLayout cl, JPanel cardLayout) {
-        setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
+        setLayout(new GridLayout(1, 4, 10, 0));
         setBackground(new Color(55, 50, 28));
-        setPreferredSize(new Dimension(600, 90));
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-        setMaximumSize(new Dimension(600, 90));
 
-        JButton buttonDaily = new JButton("Daily"); //horoscope, moonphase
-        buttonDaily.setPreferredSize(new Dimension(70, 70));
+        // Proportional height based on screen size, fill width
+        int barHeight = Math.max(60, (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.07));
+        setPreferredSize(new Dimension(Integer.MAX_VALUE, barHeight));
+
+        // Navigation buttons — evenly distributed by GridLayout
+        JButton buttonDaily = new JButton("Daily"); // Acts as redirect to main page
         add(buttonDaily);
-        add(Box.createHorizontalStrut(50));
         buttonDaily.addActionListener(_ -> cl.show(cardLayout, "Daily"));
 
-        JButton buttonReading = new JButton("Readings"); //tarot readings
-        buttonReading.setPreferredSize(new Dimension(70, 70));
+        JButton buttonReading = new JButton("Readings");
         add(buttonReading);
-        add(Box.createHorizontalStrut(50));
         buttonReading.addActionListener(_ -> cl.show(cardLayout, "Readings"));
 
-        JButton buttonCompatibility = new JButton("Compatibility"); //compatibility
-        buttonCompatibility.setPreferredSize(new Dimension(70, 70));
+        JButton buttonCompatibility = new JButton("Compatibility");
         add(buttonCompatibility);
-        add(Box.createHorizontalStrut(50));
         buttonCompatibility.addActionListener(_ -> {
             compatibilityPanel.updateComp();
             cl.show(cardLayout, "Compatibility");
         });
 
-        JButton buttonMe = new JButton("Me"); //Me: Birth chart, zodiac sign
-        buttonMe.setPreferredSize(new Dimension(70, 70));
+        JButton buttonMe = new JButton("Me");
         add(buttonMe);
         buttonMe.addActionListener(_ -> {
             mePanel.updateChart();
             cl.show(cardLayout, "Me");
         });
     }
-
 
 }
