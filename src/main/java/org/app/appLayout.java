@@ -14,8 +14,8 @@ public class appLayout extends JFrame {
         setTitle("Astrology App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Proportional window size: 60% of screen width, 90% of screen height
-        int windowWidth = (int) (screenSize.getWidth() * 0.6);
+        // Proportional window size: 30% of screen width, 90% of screen height
+        int windowWidth = (int) (screenSize.getWidth() * 0.3);
         int windowHeight = (int) (screenSize.getHeight() * 0.9);
         setSize(windowWidth, windowHeight);
         setMinimumSize(new Dimension(480, 400));
@@ -25,21 +25,26 @@ public class appLayout extends JFrame {
         JPanel window = new JPanel(new BorderLayout());
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        dailyPanel dailyPanel = new dailyPanel();
-        readingsPanel readingsPanel = new readingsPanel();
+
         compatibilityPanel compatibilityPanel = new compatibilityPanel();
         mePanel mePanel = new mePanel();
         userPanel userPanel = new userPanel();
 
         JPanel cardLayout = new JPanel(new CardLayout());
+        CardLayout cl = (CardLayout) cardLayout.getLayout();
+
+        TarotPanel tarotScreen = new TarotPanel(cl, cardLayout);
+        dailyPanel dailyPanel = new dailyPanel(cl, cardLayout);
+        readingsPanel readingsPanel = new readingsPanel(cl, cardLayout);
+
         cardLayout.add(dailyPanel, "Daily");
         cardLayout.add(readingsPanel, "Readings");
         cardLayout.add(compatibilityPanel, "Compatibility");
         cardLayout.add(mePanel, "Me");
         cardLayout.add(userPanel, "User");
+        cardLayout.add(tarotScreen, "Tarot");
         cardLayout.setBorder(BorderFactory.createEmptyBorder());
 
-        CardLayout cl = (CardLayout) cardLayout.getLayout();
         bottomMenu bottomMenu = new bottomMenu(cl, cardLayout);
 
         // Top menu bar with hamburger button

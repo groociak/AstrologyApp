@@ -9,20 +9,17 @@ import java.awt.*;
 
 
 public class dailyPanel extends JPanel {
-    public dailyPanel() {
-        setLayout(new CardLayout());
+    public dailyPanel(CardLayout mainCl, JPanel mainCards) {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder());
+        setBackground(new Color(219, 216, 206));
 
         ScrollablePanel contentDailyPanel = new ScrollablePanel();
-        contentDailyPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         contentDailyPanel.setLayout(new BoxLayout(contentDailyPanel, BoxLayout.Y_AXIS));
         contentDailyPanel.setBackground(new Color(219, 216, 206));
 
         JPanel TarotPanel = new JPanel(new BorderLayout());
         TarotPanel.setBackground(new Color(219, 216, 206));
-
-        add(TarotPanel, "Tarot");
-        CardLayout cl = (CardLayout) getLayout();
 
         // Title section — centered with constrained height
         JLabel titleLabel = new JLabel("Daily");
@@ -46,7 +43,7 @@ public class dailyPanel extends JPanel {
                 BorderFactory.createEmptyBorder(8, 20, 8, 20)
         ));
         contentDailyPanel.add(buttonTarot);
-        buttonTarot.addActionListener(_ -> cl.show(this, "Tarot"));
+        buttonTarot.addActionListener(_ -> mainCl.show(mainCards, "Tarot"));
 
         contentDailyPanel.add(Box.createVerticalStrut(10));
 
@@ -54,19 +51,10 @@ public class dailyPanel extends JPanel {
         horoscopePanel horoscopePanel = new horoscopePanel();
         contentDailyPanel.add(horoscopePanel);
 
-        // Tarot panel elements — top navigation bar
-        JPanel northTarotPanel = new JPanel(new FlowLayout());
-        northTarotPanel.setBackground(new Color(219, 216, 206));
-        JButton backButton = new JButton("<--");
-        backButton.addActionListener(_ -> cl.show(this, "Daily"));
-        JButton drawButton = new JButton("Draw");
-        northTarotPanel.add(backButton);
-        northTarotPanel.add(drawButton);
-        TarotPanel.add(northTarotPanel, BorderLayout.NORTH);
+        // Moon Phase sub-panel - comment when not working on it, only 80 api requests per day (refresh 00:00UTC)
+        MoonPhasePanel moonPhasePanel = new MoonPhasePanel();
+        contentDailyPanel.add(moonPhasePanel);
 
-        // Tarot card display area
-        TarotPanel cardPanel = new TarotPanel(drawButton);
-        TarotPanel.add(cardPanel, BorderLayout.CENTER);
 
         // Scrollable wrapper for main daily content
         JScrollPane scrollPaneDaily = new JScrollPane(contentDailyPanel);
@@ -77,6 +65,5 @@ public class dailyPanel extends JPanel {
         scrollPaneDaily.getViewport().setBackground(new Color(219, 216, 206));
         scrollPaneDaily.getVerticalScrollBar().setUI(new scrollbar());
         add(scrollPaneDaily, "Daily");
-        cl.show(this, "Daily");
     }
 }

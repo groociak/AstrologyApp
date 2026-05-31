@@ -6,7 +6,7 @@ import kong.unirest.core.JsonNode;
 import kong.unirest.core.Unirest;
 
 public class GetHoroscope {
-
+    public GetHoroscope() {}
     public static String horoscopeData(String userSign, String choice) {
         try {
             HttpResponse<JsonNode> response = Unirest.get("https://freehoroscopeapi.com/api/v1/get-horoscope/"+choice+"?sign="+userSign).asJson();

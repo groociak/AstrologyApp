@@ -2,6 +2,7 @@ package org.app.panels;
 
 import org.app.AppFonts;
 import org.app.functions.GetBirthChart;
+import org.app.functions.svgUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,38 +40,12 @@ public class mePanel extends JPanel {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                rescaleChart();
+                svgUtil.rescaleSvg(originalChartImage,chartLabel);
             }
         });
     }
 
-    /**
-     * Rescales the birth chart image to fit the current panel width
-     * while maintaining the original aspect ratio.
-     */
-    private void rescaleChart() {
-        if (originalChartImage == null) return;
-        int availableWidth = getWidth() - 40; // padding
-        if (availableWidth <= 0) return;
 
-        int imgW = originalChartImage.getWidth();
-        int imgH = originalChartImage.getHeight();
-        // Keep aspect ratio, cap at available width
-        int targetW = Math.min(availableWidth, imgW);
-        int targetH = (int) ((double) imgH / imgW * targetW);
-
-        if (targetW <= 0 || targetH <= 0) return;
-
-        BufferedImage scaled = new BufferedImage(targetW, targetH, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = scaled.createGraphics();
-        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawImage(originalChartImage, 0, 0, targetW, targetH, null);
-        g2d.dispose();
-        
-        chartLabel.setIcon(new ImageIcon(scaled));
-    }
 
     public static void updateChart() {
         originalChartImage = GetBirthChart.getChartSvg();
