@@ -3,9 +3,11 @@ package org.app.panels;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import org.app.AppFonts;
+import org.app.RoundedPanel;
 import org.app.functions.AstrologyCompatibilityService;
 import org.app.functions.zodiacUtils;
 import org.app.userData;
+import org.app.ModernButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,20 +17,46 @@ import java.util.Locale;
 public class compatibilityPanel extends JPanel {
     String date1;
     String date2;
-    public static JLabel zodiacIncompatibilityResult, zodiacCompatibilityResult, zodiacCompatibilityResultLabel;
+
+    public static JLabel zodiacIncompatibilityResult;
+    public static JLabel zodiacCompatibilityResult;
+    public static JLabel zodiacCompatibilityResultLabel;
 
     public compatibilityPanel() {
-        setBackground(new Color(219, 216, 206));
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout(0, 15));
+        setOpaque(false);
+        setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
 
         // Title section
         JLabel titleLabel = new JLabel("Compatibility");
         titleLabel.setFont(AppFonts.bold(70f));
-        JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(new Color(219, 216, 206));
-        titlePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+        titleLabel.setForeground(new Color(245, 241, 255));
+
+        JPanel titlePanel = new RoundedPanel(
+                new FlowLayout(FlowLayout.CENTER, 0, 5),
+                new Color(18, 22, 52, 180),
+                30
+        );
+        titlePanel.setBorder(BorderFactory.createEmptyBorder(10, 26, 10, 26));
         titlePanel.add(titleLabel);
-        add(titlePanel);
+
+        JPanel titleWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        titleWrapper.setOpaque(false);
+        titleWrapper.add(titlePanel);
+
+        add(titleWrapper, BorderLayout.NORTH);
+
+        // Big transparent content box
+        RoundedPanel contentBox = new RoundedPanel(
+                new BorderLayout(),
+                new Color(18, 22, 52, 180),
+                30
+        );
+        contentBox.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
+
+        JPanel contentPanel = new JPanel();
+        contentPanel.setOpaque(false);
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
         // First person date picker
         DatePickerSettings dateSettings1 = new DatePickerSettings();
@@ -45,71 +73,109 @@ public class compatibilityPanel extends JPanel {
         dateSettings2.setFontValidDate(AppFonts.regular(14f));
 
         DatePicker datePicker1 = new DatePicker(dateSettings1);
+
         JLabel dateLabel1 = new JLabel("1 person birth date: ");
         dateLabel1.setFont(AppFonts.regular(24f));
-        JPanel datePanel1 = new JPanel(new FlowLayout());
-        datePanel1.setBackground(new Color(219, 216, 206));
+        dateLabel1.setForeground(new Color(245, 241, 255));
+
+        JPanel datePanel1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        datePanel1.setOpaque(false);
         datePanel1.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
         datePanel1.add(dateLabel1);
         datePanel1.add(datePicker1);
-        add(datePanel1);
+
+        contentPanel.add(datePanel1);
 
         DatePicker datePicker2 = new DatePicker(dateSettings2);
+
         JLabel dateLabel2 = new JLabel("2 person birth date: ");
         dateLabel2.setFont(AppFonts.regular(24f));
-        JPanel datePanel2 = new JPanel(new FlowLayout());
-        datePanel2.setBackground(new Color(219, 216, 206));
+        dateLabel2.setForeground(new Color(245, 241, 255));
+
+        JPanel datePanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        datePanel2.setOpaque(false);
         datePanel2.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
         datePanel2.add(dateLabel2);
         datePanel2.add(datePicker2);
-        add(datePanel2);
+
+        contentPanel.add(datePanel2);
 
         // Calculate button and result label
-        JLabel resultLabel = new JLabel("");
-        resultLabel.setFont(AppFonts.regular(24f));
-        JButton calculateButton = new JButton("Calculate");
-        calculateButton.setBackground(new Color(219, 216, 206));
-        calculateButton.setBorder(BorderFactory.createLineBorder(new Color(55, 50, 28), 4));
-        calculateButton.setFont(AppFonts.regular(36f));
-        calculateButton.addActionListener(_ -> {
+        JLabel resultTextLabel = new JLabel("");
+        resultTextLabel.setFont(AppFonts.regular(24f));
+        resultTextLabel.setForeground(new Color(245, 241, 255));
+
+        JLabel percentLabel = new JLabel("");
+        percentLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        percentLabel.setForeground(new Color(245, 241, 255));
+
+        ModernButton calculateButton = new ModernButton("Calculate");
+        calculateButton.setFont(AppFonts.regular(32f));
+        calculateButton.setPreferredSize(new Dimension(230, 70));
+
+        calculateButton.addActionListener(e -> {
             date1 = datePicker1.getDate().toString();
             date2 = datePicker2.getDate().toString();
-            resultLabel.setText("Compatibility result: " + AstrologyCompatibilityService.calculateCompatibility(date1, date2) + "%");
-        });
-        JPanel calculateButtonPanel = new JPanel(new FlowLayout());
-        calculateButtonPanel.setBackground(new Color(219, 216, 206));
-        calculateButtonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
-        calculateButtonPanel.add(calculateButton);
-        add(calculateButtonPanel);
 
-        JPanel resultPanel = new JPanel(new FlowLayout());
-        resultPanel.setBackground(new Color(219, 216, 206));
-        resultPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
-        resultPanel.add(resultLabel);
-        add(resultPanel);
+            resultTextLabel.setText(
+                    "Compatibility result: " +
+                            AstrologyCompatibilityService.calculateCompatibility(date1, date2)
+            );
+
+            percentLabel.setText("%");
+        });
+
+        JPanel calculateButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        calculateButtonPanel.setOpaque(false);
+        calculateButtonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
+        calculateButtonPanel.add(calculateButton);
+
+        contentPanel.add(calculateButtonPanel);
+
+        JPanel resultPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        resultPanel.setOpaque(false);
+        resultPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
+
+        resultPanel.add(resultTextLabel);
+        resultPanel.add(percentLabel);
+
+        contentPanel.add(resultPanel);
 
         // Zodiac compatibility section
         JLabel zodiacCompatibilityLabel = new JLabel("Zodiac Compatibility");
         zodiacCompatibilityLabel.setFont(AppFonts.bold(36f));
-        JPanel zodiacCompatibilityPanel = new JPanel(new FlowLayout());
-        zodiacCompatibilityPanel.setBackground(new Color(219, 216, 206));
-        zodiacCompatibilityPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
-        zodiacCompatibilityPanel.add(zodiacCompatibilityLabel);
-        add(zodiacCompatibilityPanel);
+        zodiacCompatibilityLabel.setForeground(new Color(245, 241, 255));
 
-        zodiacCompatibilityResultLabel = new JLabel("Zodiac Compatibility Result for " + userPanel.zodiac + ": ");
+        JPanel zodiacCompatibilityPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        zodiacCompatibilityPanel.setOpaque(false);
+        zodiacCompatibilityPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
+        zodiacCompatibilityPanel.add(zodiacCompatibilityLabel);
+
+        contentPanel.add(zodiacCompatibilityPanel);
+
+        zodiacCompatibilityResultLabel = new JLabel(
+                "Zodiac Compatibility Result for " + userPanel.zodiac + ": "
+        );
         zodiacCompatibilityResultLabel.setFont(AppFonts.regular(24f));
-        zodiacCompatibilityResult = new JLabel("Sign is compatible with: " + zodiacUtils.getCompatibleSign());
+        zodiacCompatibilityResultLabel.setForeground(new Color(245, 241, 255));
+
+        zodiacCompatibilityResult = new JLabel(
+                "Sign is compatible with: " + zodiacUtils.getCompatibleSign()
+        );
         zodiacCompatibilityResult.setFont(AppFonts.italic(18f));
-        zodiacIncompatibilityResult = new JLabel("Sign is incompatible with: " + zodiacUtils.getIncompatibleSign());
+        zodiacCompatibilityResult.setForeground(new Color(240, 236, 255));
+
+        zodiacIncompatibilityResult = new JLabel(
+                "Sign is incompatible with: " + zodiacUtils.getIncompatibleSign()
+        );
         zodiacIncompatibilityResult.setFont(AppFonts.italic(18f));
+        zodiacIncompatibilityResult.setForeground(new Color(240, 236, 255));
 
         JPanel zodiacCompatibilityResultPanel = new JPanel();
         zodiacCompatibilityResultPanel.setLayout(new BoxLayout(zodiacCompatibilityResultPanel, BoxLayout.Y_AXIS));
-        zodiacCompatibilityResultPanel.setBackground(new Color(219, 216, 206));
+        zodiacCompatibilityResultPanel.setOpaque(false);
         zodiacCompatibilityResultPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
 
-        // Center-align zodiac result labels
         zodiacCompatibilityResultLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         zodiacCompatibilityResult.setAlignmentX(Component.CENTER_ALIGNMENT);
         zodiacIncompatibilityResult.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -119,12 +185,26 @@ public class compatibilityPanel extends JPanel {
         zodiacCompatibilityResultPanel.add(zodiacCompatibilityResult);
         zodiacCompatibilityResultPanel.add(Box.createVerticalStrut(5));
         zodiacCompatibilityResultPanel.add(zodiacIncompatibilityResult);
-        add(zodiacCompatibilityResultPanel);
+
+        contentPanel.add(zodiacCompatibilityResultPanel);
+
+        contentBox.add(contentPanel, BorderLayout.NORTH);
+
+        add(contentBox, BorderLayout.CENTER);
     }
 
+
     public static void updateComp() {
-        zodiacCompatibilityResultLabel.setText("Zodiac Compatibility Result for " + userPanel.zodiac + ": ");
-        zodiacIncompatibilityResult.setText("Sign is compatible with: " + zodiacUtils.getCompatibleSign());
-        zodiacIncompatibilityResult.setText("Sign is incompatible with: " + zodiacUtils.getIncompatibleSign());
+        zodiacCompatibilityResultLabel.setText(
+                "Zodiac Compatibility Result for " + userPanel.zodiac + ": "
+        );
+
+        zodiacCompatibilityResult.setText(
+                "Sign is compatible with: " + zodiacUtils.getCompatibleSign()
+        );
+
+        zodiacIncompatibilityResult.setText(
+                "Sign is incompatible with: " + zodiacUtils.getIncompatibleSign()
+        );
     }
 }
