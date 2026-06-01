@@ -1,39 +1,58 @@
 package org.app.panels;
 
+import org.app.AppFonts;
+import org.app.ModernButton;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class bottomMenu extends JPanel {
-    public bottomMenu(CardLayout cl, JPanel cardLayout) {
-        setLayout(new GridLayout(1, 4, 10, 0));
-        setBackground(new Color(55, 50, 28));
 
-        // Proportional height based on screen size, fill width
-        int barHeight = Math.max(60, (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.07));
+    public bottomMenu(CardLayout cl, JPanel cardLayout) {
+        setLayout(new GridLayout(1, 4, 12, 0));
+        setBackground(new Color(10, 11, 30));
+        setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+
+        int barHeight = Math.max(
+                70,
+                (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.075)
+        );
+
         setPreferredSize(new Dimension(Integer.MAX_VALUE, barHeight));
 
-        // Navigation buttons — evenly distributed by GridLayout
-        JButton buttonDaily = new JButton("Daily"); // Acts as redirect to main page
+        ModernButton buttonDaily = new ModernButton("Daily");
+        styleNavButton(buttonDaily);
         add(buttonDaily);
-        buttonDaily.addActionListener(_ -> cl.show(cardLayout, "Daily"));
 
-        JButton buttonReading = new JButton("Readings");
+        buttonDaily.addActionListener(e -> cl.show(cardLayout, "Daily"));
+
+        ModernButton buttonReading = new ModernButton("Readings");
+        styleNavButton(buttonReading);
         add(buttonReading);
-        buttonReading.addActionListener(_ -> cl.show(cardLayout, "Readings"));
 
-        JButton buttonCompatibility = new JButton("Compatibility");
+        buttonReading.addActionListener(e -> cl.show(cardLayout, "Readings"));
+
+        ModernButton buttonCompatibility = new ModernButton("Compatibility");
+        styleNavButton(buttonCompatibility);
         add(buttonCompatibility);
-        buttonCompatibility.addActionListener(_ -> {
+
+        buttonCompatibility.addActionListener(e -> {
             compatibilityPanel.updateComp();
             cl.show(cardLayout, "Compatibility");
         });
 
-        JButton buttonMe = new JButton("Me");
+        ModernButton buttonMe = new ModernButton("Me");
+        styleNavButton(buttonMe);
         add(buttonMe);
-        buttonMe.addActionListener(_ -> {
+
+        buttonMe.addActionListener(e -> {
             mePanel.updateChart();
             cl.show(cardLayout, "Me");
         });
     }
 
+    private void styleNavButton(JButton button) {
+        button.setFont(AppFonts.regular(15f));
+        button.setForeground(new Color(250, 246, 255));
+    }
 }

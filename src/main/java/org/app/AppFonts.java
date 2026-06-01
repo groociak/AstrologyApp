@@ -9,7 +9,7 @@ public class AppFonts {
 
     static {
         try{
-            baseFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(AppFonts.class.getResourceAsStream("/fonts/yoster.ttf")));
+            baseFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(AppFonts.class.getResourceAsStream("/Fonts/yoster.ttf")));
 
         }catch(FontFormatException | IOException e){
             e.printStackTrace();
