@@ -6,72 +6,119 @@ import java.awt.*;
 
 public class scrollbar extends BasicScrollBarUI {
 
-        private final Dimension thumbSize = new Dimension(8, 20);
+    private final Dimension thumbSize = new Dimension(8, 24);
 
-        @Override
-        protected Dimension getMinimumThumbSize() {
-            return thumbSize;
-        }
+    private final Color thumbColor = new Color(115, 95, 185);
+    private final Color thumbHoverColor = new Color(135, 115, 210);
 
-        @Override
-        protected void configureScrollBarColors() {
 
-            thumbColor = new Color(90, 80, 60, 180);
-            trackColor = new Color(0, 0, 0, 0);
-        }
+    private boolean hovered = false;
 
-        @Override
-        protected JButton createDecreaseButton(int orientation) {
-            return createZeroButton();
-        }
+    @Override
+    protected Dimension getMinimumThumbSize() {
+        return thumbSize;
+    }
 
-        @Override
-        protected JButton createIncreaseButton(int orientation) {
-            return createZeroButton();
-        }
+    @Override
+    protected void configureScrollBarColors() {
+        // track (tło scrolla)
+        this.trackColor = new Color(0, 0, 0, 0);
+    }
 
-        private JButton createZeroButton() {
+    @Override
+    protected JButton createDecreaseButton(int orientation) {
+        return createZeroButton();
+    }
 
-            JButton button = new JButton();
+    @Override
+    protected JButton createIncreaseButton(int orientation) {
+        return createZeroButton();
+    }
 
-            button.setPreferredSize(new Dimension(0, 0));
-            button.setMinimumSize(new Dimension(0, 0));
-            button.setMaximumSize(new Dimension(0, 0));
+    private JButton createZeroButton() {
+        JButton button = new JButton();
+        button.setPreferredSize(new Dimension(0, 0));
+        button.setMinimumSize(new Dimension(0, 0));
+        button.setMaximumSize(new Dimension(0, 0));
+        return button;
+    }
 
-            return button;
-        }
+    @Override
+    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+        // subtelne tło tracka (glass effect)
+        Graphics2D g2 = (Graphics2D) g.create();
 
-        @Override
-        protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-            // no background
-        }
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
 
-        @Override
-        protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+        g2.setColor(new Color(18, 22, 52, 40));
+        g2.fillRoundRect(
+                trackBounds.x,
+                trackBounds.y,
+                trackBounds.width,
+                trackBounds.height,
+                12,
+                12
+        );
 
-            if (thumbBounds.isEmpty() || !scrollbar.isEnabled()) {
-                return;
-            }
+        g2.dispose();
+    }
 
-            Graphics2D g2 = (Graphics2D) g.create();
+    @Override
+    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
 
-            g2.setRenderingHint(
-                    RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON
-            );
+        if (thumbBounds.isEmpty() || !scrollbar.isEnabled()) return;
 
-            g2.setColor(thumbColor);
+        Graphics2D g2 = (Graphics2D) g.create();
 
-            g2.fillRoundRect(
-                    thumbBounds.x + 2,
-                    thumbBounds.y,
-                    thumbBounds.width - 4,
-                    thumbBounds.height,
-                    10,
-                    10
-            );
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
 
-            g2.dispose();
-        }
+        // hover detection (prosty trick)
+        Point mouse = c.getMousePosition();
+        hovered = mouse != null &&
+                thumbBounds.contains(mouse);
 
+        Color base = hovered ? thumbHoverColor : thumbColor;
+
+        // cień (3D effect)
+        g2.setColor(new Color(0, 0, 0, 80));
+        g2.fillRoundRect(
+                thumbBounds.x + 2,
+                thumbBounds.y + 2,
+                thumbBounds.width - 4,
+                thumbBounds.height,
+                12,
+                12
+        );
+
+        // gradient thumb
+        GradientPaint gp = new GradientPaint(
+                0, thumbBounds.y, base.brighter(),
+                0, thumbBounds.y + thumbBounds.height, base.darker()
+        );
+
+        g2.setPaint(gp);
+        g2.fillRoundRect(
+                thumbBounds.x + 1,
+                thumbBounds.y,
+                thumbBounds.width - 2,
+                thumbBounds.height,
+                12,
+                12
+        );
+
+        // highlight (glass shine)
+        g2.setColor(new Color(255, 255, 255, 35));
+        g2.fillRoundRect(
+                thumbBounds.x + 2,
+                thumbBounds.y + 2,
+                thumbBounds.width - 6,
+                thumbBounds.height / 2,
+                10,
+                10
+        );
+
+        g2.dispose();
+    }
 }

@@ -19,8 +19,8 @@ public class GetMoonPhase {
             HttpResponse<JsonNode> response = Unirest.get(
                             "https://api.freeastroapi.com/api/v1/moon/phase")
                     .queryString("date", now)
-                    .queryString("style_moon_color", "#E0E0E0")
-                    .queryString("style_shadow_color", "#1A1A1A")
+                    .queryString("style_moon_color", "#ECE2FF")
+                    .queryString("style_shadow_color", "#565161")
                     .queryString("include_visuals", true)
                     .queryString("include_zodiac", true)
                     .queryString("include_rise_set", false)

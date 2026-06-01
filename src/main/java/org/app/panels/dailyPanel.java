@@ -60,8 +60,8 @@ public class dailyPanel extends JPanel {
         contentDailyPanel.add(horoscopePanel);
 
         // Moon Phase sub-panel - comment when not working on it, only 80 api requests per day (refresh 00:00UTC)
-        // MoonPhasePanel moonPhasePanel = new MoonPhasePanel();
-        // contentDailyPanel.add(moonPhasePanel);
+         MoonPhasePanel moonPhasePanel = new MoonPhasePanel();
+         contentDailyPanel.add(moonPhasePanel);
 
         // Scrollable wrapper for main daily content
         JScrollPane scrollPaneDaily = new JScrollPane(contentDailyPanel);

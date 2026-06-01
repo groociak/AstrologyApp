@@ -3,6 +3,7 @@ package org.app.panels;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import org.app.AppFonts;
+import org.app.ModernDatePicker;
 import org.app.functions.zodiacUtils;
 import org.app.userData;
 
@@ -98,7 +99,7 @@ public class userPanel extends JPanel {
         dateSettings.setFormatForDatesCommonEra("yyyy-MM-dd");
         dateSettings.setFontValidDate(AppFonts.regular(14f));
 
-        DatePicker datePicker = new DatePicker(dateSettings);
+        ModernDatePicker datePicker = new ModernDatePicker();
 
         JLabel dateLabel = new JLabel("Birth date");
         dateLabel.setFont(AppFonts.regular(36f));

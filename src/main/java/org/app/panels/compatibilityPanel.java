@@ -2,12 +2,9 @@ package org.app.panels;
 
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
-import org.app.AppFonts;
-import org.app.RoundedPanel;
+import org.app.*;
 import org.app.functions.AstrologyCompatibilityService;
 import org.app.functions.zodiacUtils;
-import org.app.userData;
-import org.app.ModernButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,21 +55,7 @@ public class compatibilityPanel extends JPanel {
         contentPanel.setOpaque(false);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
-        // First person date picker
-        DatePickerSettings dateSettings1 = new DatePickerSettings();
-        dateSettings1.setAllowEmptyDates(false);
-        dateSettings1.setLocale(new Locale("eng"));
-        dateSettings1.setFormatForDatesCommonEra("yyyy-MM-dd");
-        dateSettings1.setFontValidDate(AppFonts.regular(14f));
-
-        // Second person date picker
-        DatePickerSettings dateSettings2 = new DatePickerSettings();
-        dateSettings2.setAllowEmptyDates(false);
-        dateSettings2.setLocale(new Locale("eng"));
-        dateSettings2.setFormatForDatesCommonEra("yyyy-MM-dd");
-        dateSettings2.setFontValidDate(AppFonts.regular(14f));
-
-        DatePicker datePicker1 = new DatePicker(dateSettings1);
+        ModernDatePicker datePicker1 = new ModernDatePicker();
 
         JLabel dateLabel1 = new JLabel("1 person birth date: ");
         dateLabel1.setFont(AppFonts.regular(24f));
@@ -86,7 +69,7 @@ public class compatibilityPanel extends JPanel {
 
         contentPanel.add(datePanel1);
 
-        DatePicker datePicker2 = new DatePicker(dateSettings2);
+        ModernDatePicker datePicker2 = new ModernDatePicker();
 
         JLabel dateLabel2 = new JLabel("2 person birth date: ");
         dateLabel2.setFont(AppFonts.regular(24f));
